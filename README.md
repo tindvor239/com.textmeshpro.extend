@@ -1,2 +1,2 @@
-# ugui_extend
-Unity UI Extend Package
+# unity textmeshpro extend
+Unity UI textmeshpro Package
