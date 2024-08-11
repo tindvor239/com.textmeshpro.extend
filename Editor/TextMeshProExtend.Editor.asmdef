@@ -1,0 +1,17 @@
+{
+    "name": "TextMeshProExtendEditorAssemblies",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6546d7765b4165b40850b3667f981c26",
+        "GUID:73da43ce535e7ea47997840392272f13"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
