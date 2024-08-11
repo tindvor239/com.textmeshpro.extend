@@ -22,5 +22,9 @@
   "repository": {
     "url": "https://github.com/tindvor239/com.unity.textmeshpro.extend.git",
     "type": "git"
+  },
+  "dependencies": {
+    "com.unity.ugui": "1.0.0",
+    "com.unity.textmeshpro": "3.0.9"
   }
 }
