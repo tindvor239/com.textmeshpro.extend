@@ -1,6 +1,6 @@
 {
   "dependencies": {
     "com.unity.ugui": "https://github.com/tindvor239/com.unity.ugui.git",
-    "com.unity.textmeshpro"
+    "com.unity.textmeshpro": "https://github.com/tindvor239/com.unity.textmeshpro.git"
   }
 }
