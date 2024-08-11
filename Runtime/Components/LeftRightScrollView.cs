@@ -42,7 +42,7 @@ public class LeftRightScrollView : MonoBehaviour
         }
     }
 
-    public void AddOptions(List<Enum> options)
+    public void AddOptions<T>(List<T> options) where T : Enum
     {
         _rectOptions = new RectTransform[options.Count];
         for (int i = 0; i < options.Count; i++)
@@ -54,7 +54,7 @@ public class LeftRightScrollView : MonoBehaviour
         }
     }
 
-    public void AddOptions(Enum[] options)
+    public void AddOptions<T>(T[] options) where T : Enum
     {
         _rectOptions = new RectTransform[options.Length];
         for (int i = 0; i < options.Length; i++)
