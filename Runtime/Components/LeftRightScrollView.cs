@@ -54,6 +54,18 @@ public class LeftRightScrollView : MonoBehaviour
         }
     }
 
+    public void AddOptions(Enum[] options)
+    {
+        _rectOptions = new RectTransform[options.Length];
+        for (int i = 0; i < options.Length; i++)
+        {
+            TMP_Text option = Instantiate(_template, _scrollRect.content);
+            option.gameObject.SetActive(true);
+            option.text = options[i].ToString();
+            _simpleScrollSnap.AddToBack(option.gameObject);
+        }
+    }
+
     public void ClearOptions()
     {
         for (int i = 0; i < _rectOptions.Length; i++)
