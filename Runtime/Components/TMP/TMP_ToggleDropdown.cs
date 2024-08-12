@@ -88,7 +88,10 @@ public class TMP_ToggleDropdown : TMP_Dropdown
             return;
         }
         
-        Debug.Log(_toggles[value].isOn);
+        if(_toggles[value].isOn == false)
+        {
+            _onSwitchOff?.Invoke();
+        }
     }
 
     protected override void SetupToggle(Toggle toggle, int index)
