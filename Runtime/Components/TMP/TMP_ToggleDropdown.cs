@@ -65,16 +65,16 @@ public class TMP_ToggleDropdown : TMP_Dropdown
 
     protected override void SetValue(int value, bool sendCallback = true)
     {
+        Debug.Log(value);
         if (value >= _toggles.Count || value < 0)
         {
             return;
         }
-        
+
         if (_scrollRect != null && _toggleSelected == false && !IsToggleVisible(value))
         {
             ScrollToToggle(value);
         }
-
         base.SetValue(value, sendCallback);
 
         if (sendCallback)
