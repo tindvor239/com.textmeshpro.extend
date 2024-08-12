@@ -33,8 +33,8 @@ public class TMP_ToggleDropdownEditor : DropdownEditor
         EditorGUILayout.Space();
         if (m_AllowToSwitchOff.boolValue)
         {
-            EditorGUILayout.PropertyField(_onSwitchOff);
             EditorGUILayout.PropertyField(m_switchOffOnStart);
+            EditorGUILayout.PropertyField(_onSwitchOff);
         }
         serializedObject.ApplyModifiedProperties();
     }
