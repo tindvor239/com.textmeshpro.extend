@@ -77,7 +77,7 @@ public class TMP_ToggleDropdown : TMP_Dropdown
             _toggleSelected = false;
         }
 
-        if (value >= _toggles.Count)
+        if (value >= _toggles.Count || value < 0)
         {
             return;
         }
