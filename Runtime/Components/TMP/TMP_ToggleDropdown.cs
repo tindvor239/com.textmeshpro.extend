@@ -88,8 +88,9 @@ public class TMP_ToggleDropdown : TMP_Dropdown
             return;
         }
         
-        if(_toggles[value].isOn == false)
+        if(_toggles[value].isOn == false && sendCallback)
         {
+            SetValueWithoutNotify(-1);
             _onSwitchOff?.Invoke();
         }
     }
