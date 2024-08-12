@@ -20,6 +20,8 @@ public class TMP_ToggleDropdown : TMP_Dropdown
     private bool m_IsOn = false;
     [SerializeField]
     private bool m_AllowToSwitchOff = false;
+    [SerializeField]
+    private bool m_switchOffOnStart = false;
     [Tooltip("Reset on close drop down, which mean the first toggle will set on when dropdown is enable.")]
     public bool isReset = false;
     [SerializeField]
@@ -96,6 +98,11 @@ public class TMP_ToggleDropdown : TMP_Dropdown
             toggle.group.allowSwitchOff = m_AllowToSwitchOff;
         }
 
+        if (m_AllowToSwitchOff && m_switchOffOnStart)
+        {
+            toggle.SetIsOnWithoutNotify(false);
+        }
+
         if (toggle is not TMP_TextToggle)
         {
             _toggles.Add(toggle);
@@ -156,6 +163,12 @@ public class TMP_ToggleDropdown : TMP_Dropdown
     {
         base.OnValidate();
         Set(m_IsOn);
+
+        var toggleGroup = template.GetComponentInChildren<ToggleGroup>();
+        if (toggleGroup != null)
+        {
+            toggleGroup.allowSwitchOff = m_AllowToSwitchOff;
+        }
     }
 #endif
 
