@@ -65,7 +65,6 @@ public class TMP_ToggleDropdown : TMP_Dropdown
 
     protected override void SetValue(int value, bool sendCallback = true)
     {
-        Debug.Log(value);
         if (value >= _toggles.Count || value < 0)
         {
             return;
@@ -90,7 +89,7 @@ public class TMP_ToggleDropdown : TMP_Dropdown
         
         if(_toggles[value].isOn == false && sendCallback)
         {
-            SetValueWithoutNotify(-1);
+            m_Value = -1;
             _onSwitchOff?.Invoke();
         }
     }
