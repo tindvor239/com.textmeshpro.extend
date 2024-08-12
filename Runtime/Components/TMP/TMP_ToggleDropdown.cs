@@ -69,6 +69,7 @@ public class TMP_ToggleDropdown : TMP_Dropdown
         {
             ScrollToToggle(value);
         }
+
         base.SetValue(value, sendCallback);
 
         if (sendCallback)
@@ -86,17 +87,8 @@ public class TMP_ToggleDropdown : TMP_Dropdown
             _toggles[value].SetIsOnWithoutNotify(true);
             return;
         }
-
-        // if(sendCallback)
-        // {
-        //     _onSwitchOff?.Invoke();
-        //     _toggles[value].isOn = !_toggles[value].isOn;
-        //     return;
-        // }
-        // else
-        // {
-        //     _toggles[value].SetIsOnWithoutNotify(!_toggles[value].isOn);
-        // }
+        
+        Debug.Log(_toggles[value].isOn);
     }
 
     protected override void SetupToggle(Toggle toggle, int index)
