@@ -87,16 +87,16 @@ public class TMP_ToggleDropdown : TMP_Dropdown
             return;
         }
 
-        if(sendCallback)
-        {
-            _onSwitchOff?.Invoke();
-            _toggles[value].isOn = !_toggles[value].isOn;
-            return;
-        }
-        else
-        {
-            _toggles[value].SetIsOnWithoutNotify(!_toggles[value].isOn);
-        }
+        // if(sendCallback)
+        // {
+        //     _onSwitchOff?.Invoke();
+        //     _toggles[value].isOn = !_toggles[value].isOn;
+        //     return;
+        // }
+        // else
+        // {
+        //     _toggles[value].SetIsOnWithoutNotify(!_toggles[value].isOn);
+        // }
     }
 
     protected override void SetupToggle(Toggle toggle, int index)
