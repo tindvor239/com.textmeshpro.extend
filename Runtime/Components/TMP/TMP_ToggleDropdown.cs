@@ -65,6 +65,11 @@ public class TMP_ToggleDropdown : TMP_Dropdown
 
     protected override void SetValue(int value, bool sendCallback = true)
     {
+        if (value >= _toggles.Count || value < 0)
+        {
+            return;
+        }
+        
         if (_scrollRect != null && _toggleSelected == false && !IsToggleVisible(value))
         {
             ScrollToToggle(value);
@@ -75,11 +80,6 @@ public class TMP_ToggleDropdown : TMP_Dropdown
         if (sendCallback)
         {
             _toggleSelected = false;
-        }
-
-        if (value >= _toggles.Count || value < 0)
-        {
-            return;
         }
         
         if (!m_AllowToSwitchOff)
