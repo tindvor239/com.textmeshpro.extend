@@ -8,9 +8,11 @@ public class TMP_ToggleDropdownEditor : DropdownEditor
     private SerializedProperty _off;
     private SerializedProperty _on;
     private SerializedProperty m_IsOn;
+    private SerializedProperty m_AllowToSwitchOff;
     private SerializedProperty _isLableNumber;
     private SerializedProperty _numberFormat;
     private SerializedProperty _numberSeperator;
+    private SerializedProperty _onSwitchOff;
 
     public override void OnInspectorGUI()
     {
@@ -20,11 +22,17 @@ public class TMP_ToggleDropdownEditor : DropdownEditor
         EditorGUILayout.PropertyField(_on);
         EditorGUILayout.PropertyField(_off);
         EditorGUILayout.PropertyField(m_IsOn);
+        EditorGUILayout.PropertyField(m_AllowToSwitchOff);
         EditorGUILayout.PropertyField(_isLableNumber);
         if (_isLableNumber.boolValue)
         {
             EditorGUILayout.PropertyField(_numberFormat);
             EditorGUILayout.PropertyField(_numberSeperator);
+        }
+
+        if (m_AllowToSwitchOff.boolValue)
+        {
+            EditorGUILayout.PropertyField(_onSwitchOff);
         }
         serializedObject.ApplyModifiedProperties();
     }
@@ -35,6 +43,8 @@ public class TMP_ToggleDropdownEditor : DropdownEditor
         _off = serializedObject.FindProperty("off");
         _on = serializedObject.FindProperty("graphic");
         m_IsOn = serializedObject.FindProperty("m_IsOn");
+        m_AllowToSwitchOff = serializedObject.FindProperty("m_AllowToSwitchOff");
+        _onSwitchOff = serializedObject.FindProperty("_onSwitchOff");
         _isLableNumber = serializedObject.FindProperty("m_isLableNumber");
         _numberFormat = serializedObject.FindProperty("m_numberFormat");
         _numberSeperator = serializedObject.FindProperty("m_numberSperator");

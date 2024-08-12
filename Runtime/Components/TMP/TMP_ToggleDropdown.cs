@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using UnityEngine.Events;
 
 public class TMP_ToggleDropdown : TMP_Dropdown
 {
@@ -17,8 +18,12 @@ public class TMP_ToggleDropdown : TMP_Dropdown
     
     [SerializeField]
     private bool m_IsOn = false;
+    [SerializeField]
+    private bool m_AllowToSwitchOff = false;
     [Tooltip("Reset on close drop down, which mean the first toggle will set on when dropdown is enable.")]
     public bool isReset = false;
+    [SerializeField]
+    private UnityEvent _onSwitchOff = new UnityEvent();
 
     private ScrollRect _scrollRect;
     private List<Toggle> _toggles = new List<Toggle>();
@@ -34,6 +39,8 @@ public class TMP_ToggleDropdown : TMP_Dropdown
             Set(m_IsOn);
         }
     }
+
+    public UnityEvent OnSwitchOff => _onSwitchOff;
 
     /// <summary>
     /// Handling for when the dropdown is initially 'clicked'. Typically shows the dropdown
@@ -72,15 +79,27 @@ public class TMP_ToggleDropdown : TMP_Dropdown
             return;
         }
         
+        if (m_AllowToSwitchOff && _toggles[value].isOn && sendCallback)
+        {
+            _onSwitchOff?.Invoke();
+            return;
+        }
         _toggles[value].SetIsOnWithoutNotify(true);
     }
 
     protected override void SetupToggle(Toggle toggle, int index)
     {
         base.SetupToggle(toggle, index);
+
+        if (toggle.group.allowSwitchOff != m_AllowToSwitchOff)
+        {
+            toggle.group.allowSwitchOff = m_AllowToSwitchOff;
+        }
+
         if (toggle is not TMP_TextToggle)
         {
             _toggles.Add(toggle);
+            return;
         }
         
         var textToggle = (TMP_TextToggle)toggle;
