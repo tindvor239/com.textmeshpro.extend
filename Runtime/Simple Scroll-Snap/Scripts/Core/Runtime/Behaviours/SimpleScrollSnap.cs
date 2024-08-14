@@ -793,6 +793,12 @@ namespace DanielLochner.Assets.SimpleScrollSnap
         private int GetNearestPanel()
         {
             float[] distances = new float[NumberOfPanels];
+
+            if (distances.Length != Panels.Length)
+            {
+                return 0;
+            }
+
             for (int i = 0; i < Panels.Length; i++)
             {
                 distances[i] = GetDisplacementFromCenter(i).magnitude;
