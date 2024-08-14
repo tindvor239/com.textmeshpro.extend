@@ -15,7 +15,7 @@ public class TMP_ToggleDropdown : TMP_Dropdown
     private string m_numberFormat;
     [SerializeField]
     private string m_numberSperator;
-    
+
     [SerializeField]
     private bool m_IsOn = false;
     [SerializeField]
@@ -35,7 +35,7 @@ public class TMP_ToggleDropdown : TMP_Dropdown
     public bool isOn
     {
         get => m_IsOn;
-        set 
+        set
         {
             m_IsOn = value;
             Set(m_IsOn);
@@ -69,7 +69,6 @@ public class TMP_ToggleDropdown : TMP_Dropdown
         {
             return;
         }
-
         if (_scrollRect != null && _toggleSelected == false && !IsToggleVisible(value))
         {
             ScrollToToggle(value);
@@ -80,14 +79,14 @@ public class TMP_ToggleDropdown : TMP_Dropdown
         {
             _toggleSelected = false;
         }
-        
+
+        _toggles[value].SetIsOnWithoutNotify(true);
         if (!m_AllowToSwitchOff)
         {
-            _toggles[value].SetIsOnWithoutNotify(true);
             return;
         }
-        
-        if(_toggles[value].isOn == false && sendCallback)
+
+        if (_toggles[value].isOn == false && sendCallback)
         {
             m_Value = -1;
             _onSwitchOff?.Invoke();
@@ -113,7 +112,7 @@ public class TMP_ToggleDropdown : TMP_Dropdown
             _toggles.Add(toggle);
             return;
         }
-        
+
         var textToggle = (TMP_TextToggle)toggle;
         textToggle.on = textToggle.off;
         if (m_isLableNumber)
@@ -123,7 +122,7 @@ public class TMP_ToggleDropdown : TMP_Dropdown
             texts[2].text = (index + 1).ToString(m_numberFormat) + m_numberSperator;
         }
         _toggles.Add(toggle);
-        
+
     }
 
     protected override void OnSelectItem(Toggle toggle)
@@ -150,6 +149,11 @@ public class TMP_ToggleDropdown : TMP_Dropdown
     protected override void Awake()
     {
         base.Awake();
+
+        if (m_AllowToSwitchOff)
+        {
+            m_Value = -1;
+        }
 
         Toggle toggle = template.GetComponentInChildren<Toggle>();
         _height = toggle.GetComponent<RectTransform>().rect.height;
@@ -216,10 +220,9 @@ public class TMP_ToggleDropdown : TMP_Dropdown
             graphic.canvasRenderer.SetAlpha(m_IsOn ? 1f : 0f);
         else
 #endif
-            graphic.CrossFadeAlpha(m_IsOn ? 1f : 0f, instant ? 0f : 0.1f, true);
+        graphic.CrossFadeAlpha(m_IsOn ? 1f : 0f, instant ? 0f : 0.1f, true);
     }
 
-    // Phương thức để cuộn đến phần tử cụ thể
     private void ScrollToToggle(int index)
     {
         Canvas.ForceUpdateCanvases();
@@ -240,17 +243,15 @@ public class TMP_ToggleDropdown : TMP_Dropdown
 
     public bool IsToggleVisible(int index)
     {
-        // Lấy tọa độ của viewport và phần tử trong không gian thế giới
         Vector3[] viewportCorners = new Vector3[4];
         _scrollRect.viewport.GetWorldCorners(viewportCorners);
 
         Vector3[] targetCorners = new Vector3[4];
         _toggles[index].GetComponent<RectTransform>().GetWorldCorners(targetCorners);
-        
+
         bool isVisibleInVertical = targetCorners[0].y >= viewportCorners[0].y && targetCorners[1].y <= viewportCorners[1].y;
         bool isVisibleInHorizontal = targetCorners[0].x >= viewportCorners[0].x && targetCorners[3].x <= viewportCorners[3].x;
-        
-        // Kiểm tra xem phần tử có nằm trong viewport hay không
+
         return isVisibleInVertical && isVisibleInHorizontal;
     }
 
