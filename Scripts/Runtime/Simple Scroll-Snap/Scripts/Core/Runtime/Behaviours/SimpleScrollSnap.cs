@@ -632,11 +632,14 @@ namespace DanielLochner.Assets.SimpleScrollSnap
             }
         }
 
-        public void GoToPanel(int panelNumber)
+        public void GoToPanel(int panelNumber, bool canCallBack = true)
         {
             CenteredPanel = panelNumber;
             isSelected = true;
-            onPanelSelected.Invoke(panelNumber);
+            if (canCallBack)
+            {
+                onPanelSelected.Invoke(panelNumber);
+            }
 
             if (pagination != null)
             {
