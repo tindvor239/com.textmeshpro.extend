@@ -6,17 +6,17 @@ namespace TMPro {
     [AddComponentMenu("UI/TextMeshPro - CurrencyText (UI)", 11)]
     [ExecuteAlways]
     public class TextMeshProCurrencyUGUI : TextMeshProLongUGUI {
-        public bool isCurrencyAtLast;
+        public bool isUnitAtLast;
 
         [SerializeField]
-        private string m_currencyUnit = "$";
+        private string m_Unit = "$";
 
         #region PROPERTIES
-        public string currencyUnit {
-            get => m_currencyUnit;
+        public string Unit {
+            get => m_Unit;
             set
             {
-                m_currencyUnit = value;
+                m_Unit = value;
                 this.value = m_value;
             }
         }
@@ -50,13 +50,13 @@ namespace TMPro {
 
         private void OnSetValue(string sValue)
         {
-            if (isCurrencyAtLast)
+            if (isUnitAtLast)
             {
-                text = $"{sValue} {m_currencyUnit}";
+                text = $"{sValue} {m_Unit}";
             }
             else
             {
-                text = $"{m_currencyUnit} {sValue}";
+                text = $"{m_Unit} {sValue}";
             }
         }
     }

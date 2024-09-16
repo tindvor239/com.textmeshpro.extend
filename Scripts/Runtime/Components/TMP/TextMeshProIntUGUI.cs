@@ -9,7 +9,8 @@ namespace TMPro {
     public class TextMeshProIntUGUI : TextMeshProUGUI {
         public bool isComma;
         
-        private int _value;
+        [SerializeField]
+        private int m_value;
 
         #region PROPERTIES
         /// <summary>
@@ -38,10 +39,10 @@ namespace TMPro {
         }
 
         public virtual int Value {
-            get => _value;
+            get => m_value;
             set
             {
-                _value = value;
+                m_value = value;
                 if (isComma) {
                     text = value.ToCommasString();
                 }

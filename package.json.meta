@@ -1,10 +1,5 @@
 fileFormatVersion: 2
 guid: b00e0bbc32eb0e64da35dc1ce5ec972f
-importerOverride:
-  nativeImporterType: 1031
-  scriptedImporterType:
-    serializedVersion: 2
-    Hash: d53ca297fb8e7ea31d64b12a57aef201
 PackageManifestImporter:
   externalObjects: {}
   userData: 
