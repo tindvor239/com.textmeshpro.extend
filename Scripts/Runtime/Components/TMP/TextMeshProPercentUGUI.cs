@@ -4,10 +4,9 @@ using UnityEngine.UI;
 namespace TMPro {
     [RequireComponent(typeof(RectTransform))]
     [RequireComponent(typeof(CanvasRenderer))]
-    [AddComponentMenu("UI/TextMeshPro - FloatText (UI)", 11)]
+    [AddComponentMenu("UI/TextMeshPro - PercentText (UI)", 11)]
     [ExecuteAlways]
-    public class TextMeshProFloatUGUI : TextMeshProUGUI {
-        protected float value;
+    public class TextMeshProPercentUGUI : TextMeshProFloatUGUI {
 
         #region PROPERTIES
         /// <summary>
@@ -35,12 +34,12 @@ namespace TMPro {
             get { return m_mesh; }
         }
 
-        public virtual float Value {
-            get => value;
+        public override float value {
+            get => m_value;
             set
             {
-                this.value = value;
-                text = $"{value} %";
+                this.m_value = value;
+                text = $"% {value * 100}";
             }
         }
         #endregion

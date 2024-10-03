@@ -1,12 +1,15 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace TMPro {
     [RequireComponent(typeof(RectTransform))]
     [RequireComponent(typeof(CanvasRenderer))]
-    [AddComponentMenu("UI/TextMeshPro - PercentText (UI)", 11)]
+    [AddComponentMenu("UI/TextMeshPro - FloatText (UI)", 11)]
     [ExecuteAlways]
-    public class TextMeshProPercentUGUI : TextMeshProFloatUGUI {
+    public class TextMeshProFloatUGUI : TextMeshProUGUI {
+        [SerializeField]
+        protected float m_value;
 
         #region PROPERTIES
         /// <summary>
@@ -34,12 +37,12 @@ namespace TMPro {
             get { return m_mesh; }
         }
 
-        public override float Value {
-            get => value;
+        public virtual float value {
+            get => m_value;
             set
             {
-                this.value = value;
-                text = $"% {value * 100}";
+                this.m_value = value;
+                text = $"{value} %";
             }
         }
         #endregion
