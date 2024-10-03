@@ -42,7 +42,7 @@ namespace TMPro {
             set
             {
                 this.m_value = value;
-                text = $"{value} %";
+                text = $"{value}";
             }
         }
         #endregion
